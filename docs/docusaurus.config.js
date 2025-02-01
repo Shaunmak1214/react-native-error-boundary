@@ -1,12 +1,16 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/oceanicNext');
-const { npm2yarn2pnpm } = require('@sapphire/docusaurus-plugin-npm2yarn2pnpm');
+const themes = require('prism-react-renderer').themes
+const {
+  convertNpmToPackageManagers,
+} = require('@sapphire/docusaurus-plugin-npm2yarn2pnpm')
+
+const lightCodeTheme = themes.github
+const darkCodeTheme = themes.dracula
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'react-native-error-boundary',
   tagline: 'A simple and reusable React-Native error boundary component 🐛',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://react-native-error-boundary.js.org',
   favicon: '/images/logo.ico',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -23,8 +27,9 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/carloscuesta/react-native-error-boundary/tree/master/docs/',
-          remarkPlugins: [npm2yarn2pnpm],
+          editUrl:
+            'https://github.com/carloscuesta/react-native-error-boundary/tree/master/docs/',
+          remarkPlugins: [convertNpmToPackageManagers],
         },
         blog: false,
         theme: { customCss: require.resolve('./src/theme/theme.css') },
@@ -38,6 +43,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      algolia: {
+        appId: 'L5CKIX558D',
+        apiKey: 'da22f908fd4a414a5552862d24948b06',
+        indexName: 'react-native-error-boundary',
+        contextualSearch: true,
+      },
       colorMode: { respectPrefersColorScheme: true },
       navbar: {
         title: 'React Native Error Boundary',
@@ -88,7 +99,7 @@ const config = {
                 href: 'https://github.com/carloscuesta/react-native-error-boundary',
               },
             ],
-          }
+          },
         ],
       },
       prism: {
@@ -96,6 +107,6 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-};
+}
 
-module.exports = config;
+module.exports = config
